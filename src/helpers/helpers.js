@@ -1,0 +1,52 @@
+export function generateNum(){
+  return Math.floor(Math.random() * 100)
+}
+
+export const generationMathOperator = () => {
+  const operators = ['+', '-', '*', '/']; // Теперь включает деление
+  const randomIndex = Math.floor(Math.random() * operators.length);
+  return operators[randomIndex];
+};// зачем ?
+
+export function isEven(num){
+  return num % 2 === 0 ? `yes` : `no`;
+}
+
+export function isEvenGame(userInput,num){
+  const answer = isEven(num)
+  if(userInput === answer){
+    console.log(`правильно`)
+  }
+  else{
+    console.log(`не правильно`)
+  }
+}
+
+export function calcNums(num1, num2, operator) {
+  switch (operator) {
+    case '+':
+      return num1 + num2;
+    case '-':
+      return num1 - num2;
+    case '*':
+      return num1 * num2;
+    case '/':
+      return Math.floor(num1 / num2);
+    default:
+      throw new Error(`Unknown operator: ${operator}`);
+  }
+}
+
+
+export function calcGame(userInput, correctAnswer) {
+  const userAnswer = parseFloat(userInput);
+  
+  if (userAnswer === correctAnswer) {
+    console.log('Correct');
+    return true;
+  } else {
+    console.log(`'${userInput}' is wrong answer. Correct answer was '${correctAnswer}'.`);
+    return false;
+  }
+}
+

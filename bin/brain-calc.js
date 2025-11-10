@@ -1,0 +1,28 @@
+import readlineSync from 'readline-sync';
+import { generateNum, calcNums, generationMathOperator12} from '../src/helpers/helpers.js';
+
+console.log(`What is the result of the expression?`);
+
+for (let i = 0; i < 3; i += 1) {
+  const num1 = generateNum();
+  const num2 = generateNum();
+  const operator = generationMathOperator();
+
+  console.log(`Question: ${num1} ${operator} ${num2}`);
+  const userAnswer = readlineSync.question('Your answer: ');
+  const correctAnswer = calcNums(num1, num2, operator);
+
+  if (Number(userAnswer) === correctAnswer) {
+    console.log('Correct!');
+  } else {
+    console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
+    console.log('Let\'s try again!');
+    process.exit(); 
+  }
+}
+
+console.log('Congratulations!');
+
+
+
+
