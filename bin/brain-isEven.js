@@ -1,25 +1,21 @@
 import readlineSync from 'readline-sync';
-import { isEven } from '../src/helpers/helpers.js';
-import { generateNum } from '../src/helpers/helpers.js';
-import { isEvenGame } from '../src/helpers/helpers.js';
+import { generateNum, isEven } from '../src/helpers/helpers.js';
 
+console.log('Answer "yes" if the number is even, otherwise answer "no".');
 
+for (let i = 0; i < 3; i += 1) {
+  const number = generateNum();
+  console.log(`Question: ${number}`);
+  const userAnswer = readlineSync.question('Your answer: ');
+  const correctAnswer = isEven(number) ? 'yes' : 'no';
 
-console.log(`Answer "yes" if the number is even, otherwise answer "no".`);
+  if (userAnswer === correctAnswer) {
+    console.log('Correct!');
+  } else {
+    console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
+    console.log('Let\'s try again!');
+    process.exit();
+  }
+}
 
-
-const evenGameNum1 = generateNum();
-const evenGameNum2 = generateNum();
-const evenGameNum3 = generateNum();
-
-console.log(`Question: ${evenGameNum1}`)
-let userInput1 = readlineSync.question('Your answer: ')
-isEvenGame(userInput1, evenGameNum1)
-
-console.log(`Question: ${evenGameNum2}`)
-let userInput2 = readlineSync.question('Your answer: ')
-isEvenGame(userInput2, evenGameNum2)
-
-console.log(`Question: ${evenGameNum3}`)
-let userInput3 = readlineSync.question('Your answer: ')
-isEvenGame(userInput3, evenGameNum3)
+console.log('Congratulations!');
