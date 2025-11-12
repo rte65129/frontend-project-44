@@ -1,5 +1,5 @@
 export function generateNum(){
-  return Math.floor(Math.random() * 100)
+  return Math.floor(Math.random() * 101)
 }
 
 export const generationMathOperator = () => {
@@ -48,5 +48,17 @@ export function calcGame(userInput, correctAnswer) {
     console.log(`'${userInput}' is wrong answer. Correct answer was '${correctAnswer}'.`);
     return false;
   }
+}
+
+export function gcd(num1, num2){
+  num1 = Math.abs(num1)
+  num2 = Math.abs(num2)
+
+  while (num2 !== 0) {
+    const temp = num2
+    num2 = num1 % num2
+    num1 = temp
+  }
+  return num1
 }
 
