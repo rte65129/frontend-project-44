@@ -3,10 +3,10 @@ export function generateNum(){
 }
 
 export const generationMathOperator = () => {
-  const operators = ['+', '-', '*', '/']; // Теперь включает деление
+  const operators = ['+', '-', '*', '/']; 
   const randomIndex = Math.floor(Math.random() * operators.length);
   return operators[randomIndex];
-};// зачем ?
+}
 
 export function isEven(num){
   return num % 2 === 0 ? `yes` : `no`;
@@ -62,3 +62,10 @@ export function gcd(num1, num2){
   return num1
 }
 
+export function generateProgression(length, start, step){
+  const progression = [];
+  for (let i = 0; i < length; i += 1) {
+    progression.push(start + step * i);
+  }
+  return progression;
+}
