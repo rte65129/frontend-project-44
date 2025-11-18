@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import readlineSync from 'readline-sync';
 import { name } from './brain-games.js';
 import { generateNum, isEven } from '../src/helpers/helpers.js';
