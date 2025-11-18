@@ -1,4 +1,5 @@
 import readlineSync from 'readline-sync';
+import { name } from './brain-games.js';
 import { generateNum, isEven } from '../src/helpers/helpers.js';
 
 console.log('Answer "yes" if the number is even, otherwise answer "no".');
@@ -13,9 +14,9 @@ for (let i = 0; i < 3; i += 1) {
     console.log('Correct!');
   } else {
     console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
-    console.log('Let\'s try again!');
+    console.log(`Let\'s try again, ${name}`);
     process.exit();
   }
 }
 
-console.log('Congratulations!');
+console.log(`Congratulations, ${name}`);
