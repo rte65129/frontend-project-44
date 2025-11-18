@@ -12,7 +12,7 @@ export function isEven(num){
   return num % 2 === 0 ? `yes` : `no`;
 }
 
-
+//jo[a]
 export function isEvenGame(userInput,num){
   const answer = isEven(num)
   if(userInput === answer){
