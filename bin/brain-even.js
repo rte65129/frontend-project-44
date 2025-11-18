@@ -1,24 +1,17 @@
 #!/usr/bin/env node
+// ↑ Шебанг (обязательно!) — указывает, что скрипт запускается через Node.js
 
-import readlineSync from 'readline-sync';
-import { name } from './brain-games.js';
-import { generateNum, isEven } from '../src/helpers/helpers.js';
+import { isEven, generationNumber } from '../src/helpers/helpers.js'
+import runGame from '../src/runGame.js'
 
-console.log('Answer "yes" if the number is even, otherwise answer "no".');
+const generateEvenQuestion = () => {
+  const num = generationNumber()
+  const correctAnswer = String(isEven(num) ? 'yes' : 'no')
 
-for (let i = 0; i < 3; i += 1) {
-  const number = generateNum();
-  console.log(`Question: ${number}`);
-  const userAnswer = readlineSync.question('Your answer: ');
-  const correctAnswer = isEven(number);
+  const question = `${num}`
 
-  if (userAnswer === correctAnswer) {
-    console.log('Correct!');
-  } else {
-    console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
-    console.log(`Let\'s try again, ${name}`);
-    process.exit();
-  }
+  return [question, correctAnswer]
 }
 
-console.log(`Congratulations, ${name}`);
+const description = `Answer "yes" if the number is even, otherwise answer "no".`
+runGame(description, generateEvenQuestion)

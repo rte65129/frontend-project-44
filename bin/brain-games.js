@@ -1,6 +1,10 @@
 #!/usr/bin/env node
-import readlineSync from 'readline-sync';
+// ↑ Шебанг (обязательно!) — указывает, что скрипт запускается через Node.js
+
+import welcomeUser from '../src/cli.js'
 
 console.log('Welcome to the Brain Games!')
-export const name = readlineSync.question('May I have your name? ');
-console.log(`Hello, ${name}`);
+
+const name = welcomeUser()
+
+console.log(`Hello, ${name}!`)

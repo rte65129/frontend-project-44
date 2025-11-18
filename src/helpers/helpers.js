@@ -1,85 +1,90 @@
-export function generateNum(){
-  return Math.floor(Math.random() * 101)
+export const calcNums = (num1, num2, operator) => {
+  switch (operator) {
+    case '+':
+      return num1 + num2
+
+    case '-':
+      return num1 - num2
+
+    case '*':
+      return num1 * num2
+  }
 }
 
 export const generationMathOperator = () => {
-  const operators = ['+', '-', '*', '/']; 
-  const randomIndex = Math.floor(Math.random() * operators.length);
-  return operators[randomIndex];
-}
+  const num = Math.floor(Math.random() * 3) // nosonar - not used for security purposes
 
-export function isEven(num){
-  return num % 2 === 0 ? `yes` : `no`;
-}
+  switch (num) {
+    case 0:
+      return '+'
 
-//jo[a]
-export function isEvenGame(userInput,num){
-  const answer = isEven(num)
-  if(userInput === answer){
-    console.log(`правильно`)
-  }
-  else{
-    console.log(`не правильно`)
-  }
-}
+    case 1:
+      return '-'
 
-export function calcNums(num1, num2, operator) {
-  switch (operator) {
-    case '+':
-      return num1 + num2;
-    case '-':
-      return num1 - num2;
-    case '*':
-      return num1 * num2;
-    case '/':
-      return Math.floor(num1 / num2);
     default:
-      throw new Error(`Unknown operator: ${operator}`);
+      return '*'
   }
 }
 
-
-export function calcGame(userInput, correctAnswer) {
-  const userAnswer = parseFloat(userInput);
-  
-  if (userAnswer === correctAnswer) {
-    console.log('Correct');
-    return true;
-  } else {
-    console.log(`'${userInput}' is wrong answer. Correct answer was '${correctAnswer}'.`);
-    return false;
+export const isEven = (num) => {
+  if (num % 2 === 0) {
+    return true
   }
+
+  return false
 }
 
-export function gcd(num1, num2){
-  num1 = Math.abs(num1)
-  num2 = Math.abs(num2)
+export const gcd = (a, b) => {
+  a = Math.abs(a)
+  b = Math.abs(b)
 
-  while (num2 !== 0) {
-    const temp = num2
-    num2 = num1 % num2
-    num1 = temp
+  while (b !== 0) {
+    const temp = b
+    b = a % b
+    a = temp
   }
-  return num1
+
+  return a
 }
 
-export function generateProgression(length, start, step){
-  const progression = [];
-  for (let i = 0; i < length; i += 1) {
-    progression.push(start + step * i);
-  }
-  return progression;
+export const generationNumber = () => {
+  return Math.floor(Math.random() * 101) // nosonar - not used for security purposes
 }
 
-export function isPrime(num) {
-  if (num <= 1) return false; 
-  if (num === 2) return true; 
-  if (num % 2 === 0) return false; 
+export const generationArithmeticProgression = () => {
+  const lengthProgression = Math.floor(Math.random() * (20 - 5 + 1)) + 5 // nosonar - not used for security purposes
 
-  const maxDivisor = Math.sqrt(num); 
-  for (let i = 3; i <= maxDivisor; i += 2) {
-    if (num % i === 0) return false;
+  const stepProgression = Math.floor(Math.random() * (10 - 1 + 1)) + 1 // nosonar - not used for security purposes
+
+  const start = Math.floor(Math.random() * 100) // nosonar - not used for security purposes
+
+  let current = start
+
+  const newArr = []
+
+  for (let i = 0; i < lengthProgression; i += 1) {
+    newArr.push(current)
+    current += stepProgression
   }
-  
-  return true;
+
+  return newArr
+}
+
+export const replaceRandomWithDots = (arr) => {
+  const positionPoints = Math.floor(Math.random() * arr.length) // nosonar - not used for security purposes
+  const newArr = arr.map((item, index) => (index !== positionPoints ? item : '..'))
+
+  return [newArr, arr[positionPoints]]
+}
+
+export const isPrime = (num) => {
+  if (num <= 1) return false // 0 и 1 — не простые
+  if (num === 2) return true // 2 — простое
+
+  // Проверяем делители от 2 до корня из числа
+  for (let i = 2; i <= Math.sqrt(num); i++) {
+    if (num % i === 0) return false
+  }
+
+  return true
 }
