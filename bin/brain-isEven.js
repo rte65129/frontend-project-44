@@ -8,7 +8,7 @@ for (let i = 0; i < 3; i += 1) {
   const number = generateNum();
   console.log(`Question: ${number}`);
   const userAnswer = readlineSync.question('Your answer: ');
-  const correctAnswer = isEven(number) ? 'yes' : 'no';
+  const correctAnswer = isEven(number);
 
   if (userAnswer === correctAnswer) {
     console.log('Correct!');
