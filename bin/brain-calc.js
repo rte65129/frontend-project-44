@@ -13,7 +13,7 @@ for (let i = 0; i < 3; i += 1) {
   const userAnswer = readlineSync.question('Your answer: ');
   const correctAnswer = calcNums(num1, num2, operator);
 
-  if (userAnswer === correctAnswer) {
+  if (userAnswer === String(correctAnswer)) {
     console.log('Correct!');
   } else {
     console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
