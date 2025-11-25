@@ -10,7 +10,6 @@ for (let i = 0; i < 3; i += 1) {
 
   console.log(`Question: ${num1} ${num2}`);
   let correctAnswer = gcd(num1, num2);
-  console.log(correctAnswer)
   const userAnswer = readlineSync.question('Your answer: ');
 
   if (userAnswer === String(correctAnswer)) {
