@@ -1,4 +1,5 @@
 import readlineSync from 'readline-sync';
+import { name } from './brain-games.js';
 import { generateNum, generateProgression } from '../src/helpers/helpers.js';
 
 for (let i = 0; i < 3; i += 1){
@@ -19,7 +20,7 @@ for (let i = 0; i < 3; i += 1){
     console.log('Correct!');
   } else {
     console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
-    console.log(`Let's try again`);
+    console.log(`Let\'s try again, ${name}`);
     process.exit();
   }
 }

@@ -1,4 +1,5 @@
 import readlineSync from 'readline-sync';
+import { name } from './brain-games.js';
 import { generateNum, calcNums, generationMathOperator } from '../src/helpers/helpers.js';
 
 console.log('What is the result of the expression?');
@@ -12,11 +13,11 @@ for (let i = 0; i < 3; i += 1) {
   const userAnswer = readlineSync.question('Your answer: ');
   const correctAnswer = calcNums(num1, num2, operator);
 
-  if (Number(userAnswer) === correctAnswer) {
+  if (userAnswer === correctAnswer) {
     console.log('Correct!');
   } else {
     console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
-    console.log('Let\'s try again!');
+    console.log(`Let\'s try again, ${name}`);
     process.exit();
   }
 }
