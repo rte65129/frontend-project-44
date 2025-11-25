@@ -1,17 +1,26 @@
-#!/usr/bin/env node
-// ↑ Шебанг (обязательно!) — указывает, что скрипт запускается через Node.js
+import readlineSync from 'readline-sync';
+import { generateNum, generateProgression } from '../src/helpers/helpers.js';
 
-import { generationArithmeticProgression, replaceRandomWithDots } from '../src/helpers/helpers.js'
-import runGame from '../src/runGame.js'
+for (let i = 0; i < 3; i += 1){
+  const progressionLength = Math.floor(Math.random() * 6) + 5;
+  const start = generateNum() % 50 + 1;
+  const step = generateNum() % 10 + 1;
+  const hiddenIndex = Math.floor(Math.random() * progressionLength);
 
-const generateProgressionQuestion = () => {
-  const arr = generationArithmeticProgression()
-  const [newArr, correctAnswer] = replaceRandomWithDots(arr)
+  const progression = generateProgression(progressionLength, start, step);
+  const correctAnswer = String(progression[hiddenIndex]);
+  progression[hiddenIndex] = '..';
+  
+  const question = progression.join(' ');
+  console.log(`Question: ${question}`);
+  const userAnswer = readlineSync.question('Your answer: ');
 
-  const question = newArr.join(' ')
-
-  return [question, correctAnswer]
+  if (userAnswer === correctAnswer) {
+    console.log('Correct!');
+  } else {
+    console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
+    console.log(`Let's try again`);
+    process.exit();
+  }
 }
-
-const description = `What number is missing in the progression?`
-runGame(description, generateProgressionQuestion)
+console.log('Congratulations');

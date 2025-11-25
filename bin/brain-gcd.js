@@ -1,19 +1,24 @@
-#!/usr/bin/env node
-// ↑ Шебанг (обязательно!) — указывает, что скрипт запускается через Node.js
+import readlineSync from 'readline-sync';
+import { gcd, generateNum } from '../src/helpers/helpers.js';
 
-import { gcd, generationNumber } from '../src/helpers/helpers.js'
-import runGame from '../src/runGame.js'
+console.log(`Find the greatest common divisor of given numbers.`);
 
-const generateGcdQuestion = () => {
-  const a = generationNumber()
-  const b = generationNumber()
+for (let i = 0; i < 3; i += 1) {
+  const num1 = generateNum();
+  const num2 = generateNum();
 
-  const correctAnswer = String(gcd(a, b))
+  console.log(`Question: ${num1} ${num2}`);
 
-  const question = `${a} ${b}`
+  let correctAnswer = gcd(num1, num2);
+  const userAnswer = readlineSync.question('Your answer: ');
 
-  return [question, correctAnswer]
+  if(Number(userAnswer) === correctAnswer){
+    console.log('Correct!')
+  } else{
+    console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
+    console.log('Let\'s try again!');
+    process.exit(); 
+  }
 }
 
-const description = `Find the greatest common divisor of given numbers.`
-runGame(description, generateGcdQuestion)
+console.log('Congratulations!');

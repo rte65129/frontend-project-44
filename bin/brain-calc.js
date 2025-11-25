@@ -1,19 +1,24 @@
-#!/usr/bin/env node
-// ↑ Шебанг (обязательно!) — указывает, что скрипт запускается через Node.js
+import readlineSync from 'readline-sync';
+import { generateNum, calcNums, generationMathOperator } from '../src/helpers/helpers.js';
 
-import runGame from '../src/runGame.js'
-import { generationMathOperator, calcNums, generationNumber } from '../src/helpers/helpers.js'
+console.log('What is the result of the expression?');
 
-const generateCalcQuestion = () => {
-  const a = generationNumber()
-  const b = generationNumber()
-  const operator = generationMathOperator()
+for (let i = 0; i < 3; i += 1) {
+  const num1 = generateNum();
+  const num2 = generateNum();
+  const operator = generationMathOperator();
 
-  const question = `${a} ${operator} ${b}`
-  const correctAnswer = String(calcNums(a, b, operator))
+  console.log(`Question: ${num1} ${operator} ${num2}`);
+  const userAnswer = readlineSync.question('Your answer: ');
+  const correctAnswer = calcNums(num1, num2, operator);
 
-  return [question, correctAnswer]
+  if (Number(userAnswer) === correctAnswer) {
+    console.log('Correct!');
+  } else {
+    console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
+    console.log('Let\'s try again!');
+    process.exit();
+  }
 }
 
-const description = 'What is the result of the expression?'
-runGame(description, generateCalcQuestion)
+console.log('Congratulations!');
