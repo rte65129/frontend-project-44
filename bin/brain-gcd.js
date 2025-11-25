@@ -9,11 +9,11 @@ for (let i = 0; i < 3; i += 1) {
   const num2 = generateNum();
 
   console.log(`Question: ${num1} ${num2}`);
-
   let correctAnswer = gcd(num1, num2);
+  console.log(correctAnswer)
   const userAnswer = readlineSync.question('Your answer: ');
 
-  if (userAnswer === correctAnswer) {
+  if (userAnswer === String(correctAnswer)) {
     console.log('Correct!');
   } else {
     console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
