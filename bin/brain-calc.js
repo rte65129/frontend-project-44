@@ -1,6 +1,9 @@
+#!/usr/bin/env node
 import readlineSync from 'readline-sync';
+import greetUser from '../src/cli.js';
 import { generateNum, calcNums, generationMathOperator } from '../src/games/helpers.js';
 
+const name = greetUser();
 console.log('What is the result of the expression?');
 
 for (let i = 0; i < 3; i += 1) {
@@ -12,13 +15,13 @@ for (let i = 0; i < 3; i += 1) {
   const userAnswer = readlineSync.question('Your answer: ');
   const correctAnswer = calcNums(num1, num2, operator);
 
-  if (userAnswer === String(correctAnswer)) {
+  if (Number(userAnswer) === correctAnswer) {
     console.log('Correct!');
   } else {
     console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
-    console.log(`Let\'s try again, ${name}`);
+    console.log(`Let's try again, ${name}!`);
     process.exit();
   }
 }
 
-console.log('Congratulations!');
+console.log(`Congratulations, ${name}!`);

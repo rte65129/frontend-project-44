@@ -1,27 +1,30 @@
+#!/usr/bin/env node
 import readlineSync from 'readline-sync';
-import { name } from './brain-games.js';
-import { generateNum, generateProgression } from '../src/helpers/helpers.js';
+import greetUser from '../src/cli.js';
+import { generateNum, generateProgression } from '../src/games/helpers.js';
 
-for (let i = 0; i < 3; i += 1){
-  const progressionLength = Math.floor(Math.random() * 6) + 5;
-  const start = generateNum() % 50 + 1;
-  const step = generateNum() % 10 + 1;
-  const hiddenIndex = Math.floor(Math.random() * progressionLength);
+const name = greetUser();
+console.log('What number is missing in the progression?');
 
-  const progression = generateProgression(progressionLength, start, step);
-  const correctAnswer = String(progression[hiddenIndex]);
+for (let i = 0; i < 3; i += 1) {
+  const length = Math.floor(Math.random() * 6) + 5; // 5-10 numbers
+  const start = generateNum();
+  const step = Math.floor(Math.random() * 10) + 1;
+  const progression = generateProgression(length, start, step);
+  const hiddenIndex = Math.floor(Math.random() * length);
+  const correctAnswer = progression[hiddenIndex];
   progression[hiddenIndex] = '..';
   
-  const question = progression.join(' ');
-  console.log(`Question: ${question}`);
+  console.log(`Question: ${progression.join(' ')}`);
   const userAnswer = readlineSync.question('Your answer: ');
 
-  if (userAnswer === correctAnswer) {
+  if (Number(userAnswer) === correctAnswer) {
     console.log('Correct!');
   } else {
     console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
-    console.log(`Let\'s try again, ${name}`);
+    console.log(`Let's try again, ${name}!`);
     process.exit();
   }
 }
-console.log('Congratulations');
+
+console.log(`Congratulations, ${name}!`);
