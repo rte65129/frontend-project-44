@@ -1,6 +1,6 @@
 import readlineSync from 'readline-sync';
 import { name } from './brain-games.js';
-import { generateNum, calcNums, generationMathOperator } from '../src/helpers/helpers.js';
+import { generateNum, calcNums, generationMathOperator } from '../src/games/helpers.js';
 
 console.log('What is the result of the expression?');
 
