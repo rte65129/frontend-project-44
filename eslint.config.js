@@ -1,20 +1,32 @@
-import stylistic from '@stylistic/eslint-plugin'
-
 export default [
   {
     files: ['**/*.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: {
+        ...globals.node,
+      },
+    },
     plugins: {
-      '@stylistic': stylistic
+      '@stylistic': stylistic,
     },
     rules: {
+      '@stylistic/indent': ['error', 2],
+      '@stylistic/linebreak-style': ['error', 'unix'],
+      '@stylistic/quotes': ['error', 'single'],
       '@stylistic/semi': ['error', 'never'],
-      '@stylistic/eol-last': ['error', 'always'],
-      '@stylistic/brace-style': ['error', 'stroustrup'],
-      '@stylistic/no-trailing-spaces': 'error',
-      '@stylistic/space-before-blocks': 'error',
-      '@stylistic/comma-spacing': 'error',
-      '@stylistic/keyword-spacing': 'error',
-      '@stylistic/no-multiple-empty-lines': ['error', { max: 1 }]
+      '@stylistic/comma-dangle': ['error', 'always-multiline'],
+    },
+  },
+  {
+    // Исключаем файл конфигурации из проверки linebreak-style
+    files: ['eslint.config.js'],
+    rules: {
+      '@stylistic/linebreak-style': 'off'
     }
-  }
+  },
+  {
+    ignores: ['node_modules', 'dist', 'coverage'],
+  },
 ]
