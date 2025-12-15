@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 import readlineSync from 'readline-sync'
 import greetUser from '../src/cli.js'
-import { generateNum, calcNums, generationMathOperator } from '../src/games/helpers.js'
+import {
+ generateNum, calcNums, generationMathOperator,
+} from '../src/games/helpers.js'
 
 const name = greetUser()
 console.log('What is the result of the expression?')
