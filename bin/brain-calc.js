@@ -2,7 +2,7 @@
 import readlineSync from 'readline-sync'
 import greetUser from '../src/cli.js'
 import {
- generateNum, calcNums, generationMathOperator,
+  generateNum, calcNums, generationMathOperator,
 } from '../src/games/helpers.js'
 
 const name = greetUser()

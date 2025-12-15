@@ -10,10 +10,10 @@ export const isEven = (number) => {
 
 export const generationMathOperator = () => {
   const operators = [
-'+',
-'-',
-'*',
-]
+    '+',
+    '-',
+    '*',
+  ]
   const randomIndex = Math.floor(Math.random() * operators.length)
   return operators[randomIndex]
 }
