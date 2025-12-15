@@ -1,21 +1,18 @@
 #!/usr/bin/env node
 import readlineSync from 'readline-sync'
 import greetUser from '../src/cli.js'
-import { generateNum, calcNums, generationMathOperator } from '../src/games/helpers.js'
+import { generateNum, isEven } from '../src/games/helpers.js'
 
 const name = greetUser()
-console.log('What is the result of the expression?')
+console.log('Answer "yes" if the number is even, otherwise answer "no".')
 
 for (let i = 0; i < 3; i += 1) {
-  const num1 = generateNum()
-  const num2 = generateNum()
-  const operator = generationMathOperator()
-
-  console.log(`Question: ${num1} ${operator} ${num2}`)
+  const number = generateNum()
+  console.log(`Question: ${number}`)
   const userAnswer = readlineSync.question('Your answer: ')
-  const correctAnswer = calcNums(num1, num2, operator)
+  const correctAnswer = isEven(number)
 
-  if (Number(userAnswer) === correctAnswer) {
+  if (userAnswer === correctAnswer) {
     console.log('Correct!')
   }
   else {
